@@ -14,10 +14,11 @@ class ControllerDoctor extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($doctor)
     {
         $doctor = "Diki Alfarabi Hadi";
-    	return view('doctors/index',['doctor' => $doctor]);
+        return $doctor;
+    	// return view('doctors/index',['doctor' => $doctor]);
 
         // return $this->doctor->getDoctor($this->user);
     }
