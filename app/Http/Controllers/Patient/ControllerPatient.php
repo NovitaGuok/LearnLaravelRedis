@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Patient\Patient;
+use App\Http\Controllers\BaseController;
 
-class Patient extends Controller
+class ControllerPatient extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,11 @@ class Patient extends Controller
      */
     public function index()
     {
-        //
+        $patient = $this->user->patient;
+		if(!$patient){
+			$patient = $this->getNew();
+		}
+		return $patient;
     }
 
     /**
@@ -56,7 +62,11 @@ class Patient extends Controller
      */
     public function edit($id)
     {
-        //
+        $patient = $this->user->patient;
+		if(!$patient){
+			$patient = $this->getNew();
+		}
+		return $patient;
     }
 
     /**
@@ -81,4 +91,11 @@ class Patient extends Controller
     {
         //
     }
+
+    public function getNew(){
+		$info = new ControllerPatient();
+		$info->phone = "";
+		$info->address="";
+		return $info;
+	}
 }
