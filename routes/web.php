@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/doctor','ControllerDoctor@index');
-Route::get('/patient','ControllerPatient@index');
+Route::get('doctor','ControllerDoctor@index');
+Route::get('patient','ControllerPatient@index');

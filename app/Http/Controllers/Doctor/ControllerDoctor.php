@@ -16,7 +16,10 @@ class ControllerDoctor extends Controller
      */
     public function index()
     {
-        return $this->doctor->getDoctor($this->user);
+        $doctor = "Diki Alfarabi Hadi";
+    	return view('doctors/index',['doctor' => $doctor]);
+
+        // return $this->doctor->getDoctor($this->user);
     }
 
     /**
