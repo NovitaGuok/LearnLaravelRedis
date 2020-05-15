@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 Route::get('/doctors/{doctor}','ControllerDoctor@index');
 Route::get('/doctors/form', 'ControllerDoctor@form');
-Route::post('/doctors/form/process', 'ControllerDoctor@process');
+Route::post('/doctors/form/store', 'ControllerDoctor@store');
 
 Route::get('/patients/{patient}','ControllerPatient@index');
 Route::get('/patients/form', 'ControllerPatient@form');
-Route::post('/patients/form/process', 'ControllerPatient@process');
+Route::post('/patients/form/store', 'ControllerPatient@store');
