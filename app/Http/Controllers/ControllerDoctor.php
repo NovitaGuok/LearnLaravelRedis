@@ -75,7 +75,8 @@ class ControllerDoctor extends Controller
      */
     public function edit($id)
     {
-        return $this->doctor->editDoctor($this->user);
+        $doctor = DB::table('doctors')->where('id',$id)->get();
+        return view('doctors/edit',['doctor' => $doctor]);
     }
 
     /**

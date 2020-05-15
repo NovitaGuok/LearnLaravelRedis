@@ -18,9 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/doctors/{doctor}','ControllerDoctor@index');
-Route::get('/doctors/form', 'ControllerDoctor@form');
-Route::post('/doctors/form/store', 'ControllerDoctor@store');
+Route::get('/doctors/index','ControllerDoctor@index');
+Route::get('/doctors/form', 'ControllerDoctor@create');
+Route::post('/doctors/store', 'ControllerDoctor@store');
+Route::post('/doctors/edit/{id}', 'ControllerDoctor@edit');
 
 Route::get('/patients/{patient}','ControllerPatient@index');
 Route::get('/patients/form', 'ControllerPatient@form');
