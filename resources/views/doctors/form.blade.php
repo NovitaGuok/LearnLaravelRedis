@@ -5,7 +5,7 @@
 </head>
 <body>
  
-	<form action="/form/store" method="post">
+	<form action="/doctor/store" method="post">
         {{ csrf_field() }}
       	Name: <input type="text" name="name"> <br/>
         Degree: <input type="text" name="degree"> <br/>

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Doctor;
 
 class ControllerDoctor extends Controller
 {
-
-    protected $doctor;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +14,7 @@ class ControllerDoctor extends Controller
      */
     public function index()
     {
-        $doctor = DB::table('doctors')->get();
+        $doctor = Doctor::all();
         return view('doctors/index',['doctor' => $doctor]);
     }
 
@@ -38,7 +36,15 @@ class ControllerDoctor extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('doctors')->insert([
+        $this->validate($request,[
+    		'name' => 'required',
+    		'degree' => 'required',
+    		'phone' => 'required',
+    		'address' => 'required',
+    		'field' => 'required'
+    	]);
+        
+        Doctor::create([
             'name' => $request->name,
             'degree' => $request->degree,
             'phone' => $request->phone,
@@ -47,13 +53,6 @@ class ControllerDoctor extends Controller
         ]);
 
         return redirect('/doctors/index');
-
-        // $name = $request->input('name');
-        // $degree = $request->input('degree');
-        // $phone = $request->input('phone');
-        // $address = $request->input('address');
-        // $field = $request->input('field');
-        // return $name.", ".$degree.", ".$phone.", ".$address.", ".$field;
     }
 
     /**
@@ -75,7 +74,7 @@ class ControllerDoctor extends Controller
      */
     public function edit($id)
     {
-        $doctor = DB::table('doctors')->where('id',$id)->get();
+        $doctor = Doctor::find($id);
         return view('doctors/edit',['doctor' => $doctor]);
     }
 
@@ -88,7 +87,24 @@ class ControllerDoctor extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+    		'name' => 'required',
+    		'degree' => 'required',
+    		'phone' => 'required',
+    		'address' => 'required',
+    		'field' => 'required'
+    	]);
+        
+        $doctor = Doctor::find($id);
+        $doctor->name = $request->name;
+        $doctor->degree = $request->degree;
+        $doctor->phone = $request->phone;
+        $doctor->address = $request->address;
+        $doctor->field = $request->field;
+
+        $doctor->save();
+
+        return redirect('/doctors/index');
     }
 
     /**
@@ -99,6 +115,8 @@ class ControllerDoctor extends Controller
      */
     public function destroy($id)
     {
-        //
+        $doctor = Doctor::find($id);
+        $doctor->delete();
+	    return redirect('/doctors/index');
     }
 }

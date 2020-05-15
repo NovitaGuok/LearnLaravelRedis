@@ -22,7 +22,7 @@
 			<td>
 				<a href="/doctors/edit/{{ $d->id }}">Edit</a>
 				|
-				<a href="/doctors/hapus/{{ $d->id }}">Delete</a>
+				<a href="/doctors/destroy/{{ $d->id }}">Delete</a>
 			</td>
 		</tr>
 		@endforeach
