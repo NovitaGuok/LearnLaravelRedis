@@ -20,9 +20,9 @@
 			<td>{{ $d->address }}</td>
             <td>{{ $d->field }}</td>
 			<td>
-				<!-- <a href="/pegawai/edit/{{ $p->pegawai_id }}">Edit</a>
+				<a href="/doctors/edit/{{ $d->id }}">Edit</a>
 				|
-				<a href="/pegawai/hapus/{{ $p->pegawai_id }}">Hapus</a> -->
+				<a href="/doctors/hapus/{{ $d->id }}">Delete</a>
 			</td>
 		</tr>
 		@endforeach

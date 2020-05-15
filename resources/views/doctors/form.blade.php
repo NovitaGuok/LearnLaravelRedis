@@ -6,18 +6,12 @@
 <body>
  
 	<form action="/form/store" method="post">
-		<input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
-      
-      	Name:
-		<input type="text" name="name"> <br/>
-        Degree:
-		<input type="text" name="degree"> <br/>
-        Phone:
-		<input type="text" name="phone"> <br/>
-		Address:
-		<input type="text" name="address"> <br/>
-        Field:
-		<input type="text" name="field"> <br/>
+        {{ csrf_field() }}
+      	Name: <input type="text" name="name"> <br/>
+        Degree: <input type="text" name="degree"> <br/>
+        Phone: <input type="text" name="phone"> <br/>
+		Address: <input type="text" name="address"> <br/>
+        Field: <input type="text" name="field"> <br/>
 		<input type="submit" value="Save">
 	</form>
 </body>

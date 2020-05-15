@@ -19,7 +19,7 @@ class ControllerDoctor extends Controller
         $doctor = DB::table('doctors')->get();
         return view('doctors/index',['doctor' => $doctor]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,19 +38,22 @@ class ControllerDoctor extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $degree = $request->input('degree');
-        $phone = $request->input('phone');
-        $address = $request->input('address');
-        $field = $request->input('field');
-        return $name.", ".$degree.", ".$phone.", ".$address.", ".$field;
+        DB::table('doctors')->insert([
+            'name' => $request->name,
+            'degree' => $request->degree,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'field' => $request->field
+        ]);
 
-        // $doctor = $this->user->doctor;
-        // if(!$doctor){
-        //     return $this->doctor->insertDoctor($this->user,$request);
-        // }else{
-        //     return $this->doctor->updateDoctor($this->user,$request,$doctor);
-        // }
+        return redirect('/doctors/index');
+
+        // $name = $request->input('name');
+        // $degree = $request->input('degree');
+        // $phone = $request->input('phone');
+        // $address = $request->input('address');
+        // $field = $request->input('field');
+        // return $name.", ".$degree.", ".$phone.", ".$address.", ".$field;
     }
 
     /**
