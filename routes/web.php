@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/doctor/{doctor}','ControllerDoctor@index');
-Route::get('/form', 'ControllerDoctor@form');
-Route::post('/form/process', 'ControllerDoctor@process');
+Route::get('/doctors/{doctor}','ControllerDoctor@index');
+Route::get('/doctors/form', 'ControllerDoctor@form');
+Route::post('/doctors/form/process', 'ControllerDoctor@process');
 
-Route::get('patient/{patient}','ControllerPatient@index');
-Route::get('/form', 'ControllerPatient@form');
-Route::post('/form/process', 'ControllerPatient@process');
+Route::get('/patients/{patient}','ControllerPatient@index');
+Route::get('/patients/form', 'ControllerPatient@form');
+Route::post('/patients/form/process', 'ControllerPatient@process');
