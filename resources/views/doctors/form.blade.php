@@ -5,7 +5,7 @@
 </head>
 <body>
  
-	<form action="/formulir/proses" method="post">
+	<form action="/form/store" method="post">
 		<input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
       
       	Name:
