@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Patient\Patient;
+use Illuminate\Support\Facades\DB;
 
-class ControllerPatient extends Controller
+class ControllerDoctor extends Controller
 {
+
+    protected $doctor;
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +16,7 @@ class ControllerPatient extends Controller
      */
     public function index()
     {
-        $patient = DB::table('patients')->get();
-
-		return view('patients/index',['patient' => $patient]);
+        return $this->doctor->getDoctor($this->user);
     }
 
     /**
@@ -37,7 +37,12 @@ class ControllerPatient extends Controller
      */
     public function store(Request $request)
     {
-        
+        $doctor = $this->user->doctor;
+        if(!$doctor){
+            return $this->doctor->insertDoctor($this->user,$request);
+        }else{
+            return $this->doctor->updateDoctor($this->user,$request,$doctor);
+        }
     }
 
     /**
@@ -59,11 +64,7 @@ class ControllerPatient extends Controller
      */
     public function edit($id)
     {
-        $patient = $this->user->patient;
-		if(!$patient){
-			$patient = $this->getNew();
-		}
-		return $patient;
+        return $this->doctor->editDoctor($this->user);
     }
 
     /**
@@ -88,11 +89,4 @@ class ControllerPatient extends Controller
     {
         //
     }
-
-    // public function getNew(){
-	// 	$info = new ControllerPatient();
-	// 	$info->phone = "";
-	// 	$info->address="";
-	// 	return $info;
-	// }
 }
