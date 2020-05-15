@@ -14,15 +14,12 @@ class ControllerDoctor extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($doctor)
+    public function index()
     {
-        $doctor = "Diki Alfarabi Hadi";
-        return $doctor;
-    	// return view('doctors/index',['doctor' => $doctor]);
-
-        // return $this->doctor->getDoctor($this->user);
+        $doctor = DB::table('doctors')->get();
+        return view('doctors/index',['doctor' => $doctor]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +27,7 @@ class ControllerDoctor extends Controller
      */
     public function create()
     {
-        //
+        return view('/doctors/form');
     }
 
     /**
@@ -41,12 +38,19 @@ class ControllerDoctor extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = $this->user->doctor;
-        if(!$doctor){
-            return $this->doctor->insertDoctor($this->user,$request);
-        }else{
-            return $this->doctor->updateDoctor($this->user,$request,$doctor);
-        }
+        $name = $request->input('name');
+        $degree = $request->input('degree');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $field = $request->input('field');
+        return $name.", ".$degree.", ".$phone.", ".$address.", ".$field;
+
+        // $doctor = $this->user->doctor;
+        // if(!$doctor){
+        //     return $this->doctor->insertDoctor($this->user,$request);
+        // }else{
+        //     return $this->doctor->updateDoctor($this->user,$request,$doctor);
+        // }
     }
 
     /**
